@@ -9,12 +9,15 @@
     "build": "node construir.js",
     "test": "node test.js"
   },
-  "keywords": ["firewall", "event"],
+  "keywords": [
+    "firewall",
+    "event"
+  ],
   "author": "allnulled",
   "license": "ISC",
   "dependencies": {
     "chokidar": "^4.0.1"
   },
   "devDependencies": {},
-  "description": ""
+  "description": "Centralizar lógica (condicional) entorno a eventos usando un pequeño lenguaje que intercala JavaScript."
 }
