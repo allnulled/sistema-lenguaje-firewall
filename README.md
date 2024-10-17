@@ -4,11 +4,13 @@ Centralizar lógica (condicional) entorno a eventos usando un pequeño lenguaje 
 
 ## Instalar
 
+Puedes bajártelo con git así:
+
 ```
-git clone ...
+git clone https://github.com/allnulled/sistema-lenguaje-firewall.git .
 ```
 
-Quizá está en NPM también:
+También puedes descargártelo mediante npm así:
 
 ```
 npm install -s sistema-lenguaje-firewall
