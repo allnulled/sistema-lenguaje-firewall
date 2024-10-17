@@ -147,10 +147,10 @@ El título `rule whatever` te será una útil referencia para más adelante, en 
 
 Hay otros detalles sobre los identificadores de eventos:
 
-  - Tienen espacios de nombre. Todos están separados por el caracter que hay en `firewall.configuraciones.separador_de_ambito`. Por defecto, es `.`.
+  - Tienen espacios de nombre. Por defecto es `.`. Todos están separados por el caracter que hay en `firewall.configuraciones.separador_de_ambito`. Por defecto, es `.`.
     - Los espacios de nombres permiten jugar con el asterisco en los selectores.
     - Por ejemplo, si vas a hacer una API, puedes prefijarla con un nombre, y lanzar eventos en toda la API solo con: `miapi.*`
-  - Tienen separador de eventos. Con esto, puedes crear reglas que apunten a varios eventos a la vez. Por ejemplo:
+  - Tienen separador de eventos. Por defecto es `,`. Está en `firewall.configuraciones.separador_de_eventos`. Con esto, puedes crear reglas que apunten a varios eventos a la vez. Por ejemplo:
 
 ```
 on events {

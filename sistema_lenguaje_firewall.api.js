@@ -11,7 +11,7 @@ const Sistema_lenguaje_firewall = class {
     this.configuraciones = Object.assign({
       tracear: true,
       ambito: this,
-      separador_de_eventos: ";",
+      separador_de_eventos: ",",
       separador_de_ambito: "."
     }, configuraciones);
   }
