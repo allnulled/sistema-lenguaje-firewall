@@ -1,6 +1,6 @@
 {
   "name": "sistema-lenguaje-firewall",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "construir.js",
   "directories": {
     "test": "tests"
