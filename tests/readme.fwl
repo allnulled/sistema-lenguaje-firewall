@@ -49,3 +49,11 @@ en evento {*} ocurre que {
         }
     }
 }
+
+on events {
+    rest.insert.many;
+    rest.update.many;
+    rest.delete.many
+} then {
+    anytime {{ check_credentials() }}
+}

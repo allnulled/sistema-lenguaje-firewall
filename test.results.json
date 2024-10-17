@@ -249,6 +249,26 @@
           },
           "$tex": "en evento {*} ocurre que {\n    siempre {{ console.log(\"que pasa por aquí, imprimirá esto\") }}\n\n    anytime {{ console.log(\"que pasa por aquí, imprimirá esto\") }}\n\n    en proceso x: {\n        siempre {{ console.log(\"Empieza proceso x\") }}\n        siempre {{ break x; }}\n    }\n\n    in process y: {\n        siempre {{ console.log(\"Starts process y\") }}\n        siempre {{ break y; }}\n    }\n\n    si {{ condicion(1) }} y {{ condicion(2) }} o (\n        {{ condicion(3) }} y {{ condicion(4) }}\n    ) entonces {{\n        console.log(\"OK 1\")\n    }} o si ({{ condicion(5) }} o {{ condicion(6) }}) y (\n        {{ condicion(7) }} o {{ condicion(8) }}\n    ) entonces {{\n        console.log(\"OK 2\")\n    }} o si no entonces {{\n        console.log(\"NO OK\");\n    }}\n\n    if {{ condicion(1) }} and {{ condicion(2) }} or (\n        {{ condicion(3) }} and {{ condicion(4) }}\n    ) then {{\n        console.log(\"OK 1\")\n    }} o si ({{ condicion(5) }} o {{ condicion(6) }}) y (\n        {{ condicion(7) }} o {{ condicion(8) }}\n    ) entonces {{\n        console.log(\"OK 2\")\n    }} o si no entonces {{\n        console.log(\"NO OK\");\n    }}\n\n    if {{ condicion(1) }} then {\n        in process one: {\n            if {{ condicion(2) }} or {{ condicion(3) }} or {{ condicion(4) }} then {\n                anytime {{ break one; }}\n            } else if {{ condicion(5) }} or {{ condicion(6) }} then {\n                anytime {{ break one; }}\n            } else {\n                anytime {{ throw new Error(\"No se puede\"); }}\n            }\n        }\n    }\n}",
           "orden": 0
+        },
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": "\n    rest.insert.many;\n    rest.update.many;\n    rest.delete.many\n",
+          "bloque": " check_credentials() ",
+          "$loc": {
+            "start": {
+              "offset": 1523,
+              "line": 51,
+              "column": 2
+            },
+            "end": {
+              "offset": 1650,
+              "line": 59,
+              "column": 2
+            }
+          },
+          "$tex": "\n\non events {\n    rest.insert.many;\n    rest.update.many;\n    rest.delete.many\n} then {\n    anytime {{ check_credentials() }}\n}",
+          "orden": 1
         }
       ]
     }

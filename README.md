@@ -134,7 +134,37 @@ No son muchas ventajas, pero alguna de ellas puede aumentar la mantenibilidad de
 
 El lenguaje capta 1 tipo de sentencia: el registro de eventos. Puede repetirse cuantas veces sean.
 
-Dentro de esta sentencia, podemos encontrar 3 tipos de sentencia:
+Este, por ejemplo, es el evento genérico. Si usamos el `*`, estaremos inyectando código en todos los eventos de la máquina.
+
+```
+[ rule whatever ]
+on event { * } then {
+    
+}
+```
+
+El título `rule whatever` te será una útil referencia para más adelante, en usos avanzados de la máquina. De momento, es un simple nombre que se le puede dar a ese evento. Pero es totalmente opcional y ahorrable.
+
+Hay otros detalles sobre los identificadores de eventos:
+
+  - Tienen espacios de nombre. Todos están separados por el caracter que hay en `firewall.configuraciones.separador_de_ambito`. Por defecto, es `.`.
+    - Los espacios de nombres permiten jugar con el asterisco en los selectores.
+    - Por ejemplo, si vas a hacer una API, puedes prefijarla con un nombre, y lanzar eventos en toda la API solo con: `miapi.*`
+  - Tienen separador de eventos. Con esto, puedes crear reglas que apunten a varios eventos a la vez. Por ejemplo:
+
+```
+on events {
+    rest.insert.many,
+    rest.update.many,
+    rest.delete.many
+} then {
+    
+}
+```
+
+En este ejemplo se está apuntando a varios selectores al mismo tiempo, y es correcto.
+
+Pues dentro de esta sentencia, podemos encontrar 3 tipos de sentencia:
 
   - Siempre. Los bloques de siempre siempre se ejecutan. Solo admite bloques de JavaScript.
   - Proceso. Los bloques de procesos pueden interrumpirse con un {{ break nombre_de_proceso; }} de JavaScript. Permiten continuar la sintaxis solamente.
