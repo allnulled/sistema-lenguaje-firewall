@@ -63,7 +63,7 @@ const Sistema_lenguaje_firewall = class {
   }
   cargar_fichero(ruta) {
     this.tracear("Firewall.prototype.cargar_fichero");
-    console.log(ruta);
+    this.tracear("Cargando fichero:\n  - " + ruta);
     // Cargamos el fichero:
     return this.leer_fichero(ruta).then(contenido => {
       // Fijamos el fichero:

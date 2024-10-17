@@ -35,6 +35,7 @@ const main = async function () {
       console.log("Evento 1");
       console.log(mensaje);
     });
+    const ast_0 = await firewall.cargar_fichero(__dirname + "/tests/readme.fwl");
     const ast = await firewall.cargar_fichero(__dirname + "/tests/firewall1.fwl");
     firewall.emitir("saludar", "Hola!");
     const observador = await firewall.escuchar_fichero(__dirname + "/tests/firewall1.fwl");
@@ -49,9 +50,10 @@ const main = async function () {
       setTimeout(() => clearInterval(id_timeout_2), 1000 * n);
       setTimeout(() => resolve(), (1000 * n) + 1000);
     });
-    const ast2 = await firewall.cargar_fichero(__dirname + "/tests/readme.fwl");
-    console.log(ast2);
   }
 };
 
-module.exports = main();
+module.exports = main().catch(error => {
+  console.log(error);
+  throw error;
+});
