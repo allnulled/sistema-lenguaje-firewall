@@ -2,6 +2,11 @@
 
 Centralizar lógica (condicional) entorno a eventos usando un pequeño lenguaje que intercala JavaScript.
 
+## Sitios oficiales
+
+ - Github: [https://github.com/allnulled/sistema-lenguaje-firewall](https://github.com/allnulled/sistema-lenguaje-firewall)
+ - NPM: [https://www.npmjs.com/package/sistema-lenguaje-firewall](https://www.npmjs.com/package/sistema-lenguaje-firewall)
+
 ## Instalar
 
 Puedes bajártelo con git así:
