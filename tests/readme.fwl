@@ -1,0 +1,51 @@
+en evento {*} ocurre que {
+    siempre {{ console.log("que pasa por aquí, imprimirá esto") }}
+
+    anytime {{ console.log("que pasa por aquí, imprimirá esto") }}
+
+    en proceso x: {
+        siempre {{ console.log("Empieza proceso x") }}
+        siempre {{ break x; }}
+    }
+
+    in process y: {
+        siempre {{ console.log("Starts process y") }}
+        siempre {{ break y; }}
+    }
+
+    si {{ condicion(1) }} y {{ condicion(2) }} o (
+        {{ condicion(3) }} y {{ condicion(4) }}
+    ) entonces {{
+        console.log("OK 1")
+    }} o si ({{ condicion(5) }} o {{ condicion(6) }}) y (
+        {{ condicion(7) }} o {{ condicion(8) }}
+    ) entonces {{
+        console.log("OK 2")
+    }} o si no entonces {{
+        console.log("NO OK");
+    }}
+
+    if {{ condicion(1) }} and {{ condicion(2) }} or (
+        {{ condicion(3) }} and {{ condicion(4) }}
+    ) then {{
+        console.log("OK 1")
+    }} o si ({{ condicion(5) }} o {{ condicion(6) }}) y (
+        {{ condicion(7) }} o {{ condicion(8) }}
+    ) entonces {{
+        console.log("OK 2")
+    }} o si no entonces {{
+        console.log("NO OK");
+    }}
+
+    if {{ condicion(1) }} then {
+        in process one: {
+            if {{ condicion(2) }} or {{ condicion(3) }} or {{ condicion(4) }} then {
+                anytime {{ break one; }}
+            } else if {{ condicion(5) }} or {{ condicion(6) }} then {
+                anytime {{ break one; }}
+            } else {
+                anytime {{ throw new Error("No se puede"); }}
+            }
+        }
+    }
+}

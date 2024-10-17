@@ -1,0 +1,20 @@
+{
+  "name": "sistema-lenguaje-firewall",
+  "version": "1.0.0",
+  "main": "construir.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "node construir.js",
+    "test": "node test.js"
+  },
+  "keywords": ["firewall", "event"],
+  "author": "allnulled",
+  "license": "ISC",
+  "dependencies": {
+    "chokidar": "^4.0.1"
+  },
+  "devDependencies": {},
+  "description": ""
+}

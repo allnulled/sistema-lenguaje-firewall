@@ -1,0 +1,256 @@
+{
+  "firewall1.fwl": {
+    "order": 0,
+    "data": {
+      "ast": [
+        {
+          "tipo": "sentencia de regla",
+          "id": " rule 87 ",
+          "eventos": " * ",
+          "bloque": " // load_everything() ;\nif(! true  ||  false  || (( false  ||  false ) || ( false  ||  true ))) { \n        // await go();\n    };\nif( false  ||  false  || ( false  ||  false )) { \n        // await go();\n    }",
+          "$loc": {
+            "start": {
+              "offset": 0,
+              "line": 1,
+              "column": 1
+            },
+            "end": {
+              "offset": 358,
+              "line": 15,
+              "column": 2
+            }
+          },
+          "$tex": "[ rule 87 ]\non event { * } then {\n    anytime [[ // load_everything() ]]\n    if not [[ true ]] or [[ false ]] and (\n        ([[ false ]] or [[ false ]]) or\n        ([[ false ]] or [[ true ]])\n    ) then [[ \n        // await go();\n    ]]\n    if [[ false ]] or [[ false ]] and (\n        [[ false ]] or [[ false ]]\n    ) then [[ \n        // await go();\n    ]]\n}",
+          "orden": 0
+        },
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": " * ",
+          "bloque": " // await cargar_todas_las_cosaj() ;\nif((! true  || ! true  ||  false )) {\n        // stay_high()\n    }",
+          "$loc": {
+            "start": {
+              "offset": 358,
+              "line": 15,
+              "column": 2
+            },
+            "end": {
+              "offset": 532,
+              "line": 22,
+              "column": 2
+            }
+          },
+          "$tex": "\n\non event { * } then {\n    anytime {{ // await cargar_todas_las_cosaj() }}\n    if (not {{ true }} and not {{ true }} and {{ false }}) then {{\n        // stay_high()\n    }}\n}",
+          "orden": 1
+        },
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": " * ",
+          "bloque": " ",
+          "$loc": {
+            "start": {
+              "offset": 532,
+              "line": 22,
+              "column": 2
+            },
+            "end": {
+              "offset": 575,
+              "line": 26,
+              "column": 2
+            }
+          },
+          "$tex": "\n\non event { * } then {\n    anytime {{ }}\n}",
+          "orden": 2
+        },
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": " * ",
+          "bloque": " // load_everything() ",
+          "$loc": {
+            "start": {
+              "offset": 575,
+              "line": 26,
+              "column": 2
+            },
+            "end": {
+              "offset": 623,
+              "line": 28,
+              "column": 47
+            }
+          },
+          "$tex": "\n\non event { * } then {{ // load_everything() }}",
+          "orden": 3
+        },
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": " * ",
+          "bloque": "\n    // console.clear();\n    console.log(\"Evento: *\" );\n    console.log(\"[TRACE] A las \" + (new Date()).toString() + \"\\n[TRACE] Evento emitido: \" + evento);\n    console.log(\"[TRACE]\", parametros);\n",
+          "$loc": {
+            "start": {
+              "offset": 623,
+              "line": 28,
+              "column": 47
+            },
+            "end": {
+              "offset": 846,
+              "line": 35,
+              "column": 3
+            }
+          },
+          "$tex": "\n\non event { * } then {{\n    // console.clear();\n    console.log(\"Evento: *\" );\n    console.log(\"[TRACE] A las \" + (new Date()).toString() + \"\\n[TRACE] Evento emitido: \" + evento);\n    console.log(\"[TRACE]\", parametros);\n}}",
+          "orden": 4
+        },
+        {
+          "tipo": "sentencia de regla",
+          "id": " Regla X ",
+          "eventos": " * ",
+          "bloque": " // cargar_todo() ;\nif(! true  ||  false  && (( false  ||  false ) || ( false  ||  true ))) { \n        // await go();\n    };\nif( false  ||  false  && ( false  ||  false )) { \n        // await go();\n    }",
+          "$loc": {
+            "start": {
+              "offset": 846,
+              "line": 35,
+              "column": 3
+            },
+            "end": {
+              "offset": 1205,
+              "line": 52,
+              "column": 2
+            }
+          },
+          "$tex": "\n\n\n[ Regla X ]\nen evento { * } entonces {\n    siempre [[ // cargar_todo() ]]\n    si no [[ true ]] o [[ false ]] y (\n        ([[ false ]] o [[ false ]]) o\n        ([[ false ]] o [[ true ]])\n    ) entonces [[ \n        // await go();\n    ]]\n    si [[ false ]] o [[ false ]] y (\n        [[ false ]] o [[ false ]]\n    ) entonces [[ \n        // await go();\n    ]]\n}",
+          "orden": 5
+        },
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": "super.hiper.mega.guay",
+          "bloque": " console.log(\"Evento: super.hiper.mega.guay\" ); ",
+          "$loc": {
+            "start": {
+              "offset": 1205,
+              "line": 52,
+              "column": 2
+            },
+            "end": {
+              "offset": 1313,
+              "line": 56,
+              "column": 2
+            }
+          },
+          "$tex": "\n\non event {super.hiper.mega.guay} then {\n    anytime {{ console.log(\"Evento: super.hiper.mega.guay\" ); }}\n}",
+          "orden": 6
+        },
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": "super.hiper.mega.guay.*",
+          "bloque": " console.log(\"Evento: super.hiper.mega.guay.*\" ); ",
+          "$loc": {
+            "start": {
+              "offset": 1313,
+              "line": 56,
+              "column": 2
+            },
+            "end": {
+              "offset": 1424,
+              "line": 59,
+              "column": 2
+            }
+          },
+          "$tex": "\non event {super.hiper.mega.guay.*} then {\n    anytime {{ console.log(\"Evento: super.hiper.mega.guay.*\" ); }}\n}",
+          "orden": 7
+        },
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": "super.hiper.mega.*",
+          "bloque": " console.log(\"Evento: super.hiper.mega.*\" ); ",
+          "$loc": {
+            "start": {
+              "offset": 1424,
+              "line": 59,
+              "column": 2
+            },
+            "end": {
+              "offset": 1525,
+              "line": 62,
+              "column": 2
+            }
+          },
+          "$tex": "\non event {super.hiper.mega.*} then {\n    anytime {{ console.log(\"Evento: super.hiper.mega.*\" ); }}\n}",
+          "orden": 8
+        },
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": "super.hiper.*",
+          "bloque": " console.log(\"Evento: super.hiper.*\" ); ",
+          "$loc": {
+            "start": {
+              "offset": 1525,
+              "line": 62,
+              "column": 2
+            },
+            "end": {
+              "offset": 1616,
+              "line": 65,
+              "column": 2
+            }
+          },
+          "$tex": "\non event {super.hiper.*} then {\n    anytime {{ console.log(\"Evento: super.hiper.*\" ); }}\n}",
+          "orden": 9
+        },
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": "super.*",
+          "bloque": " console.log(\"Evento: super.*\" ); ",
+          "$loc": {
+            "start": {
+              "offset": 1616,
+              "line": 65,
+              "column": 2
+            },
+            "end": {
+              "offset": 1695,
+              "line": 68,
+              "column": 2
+            }
+          },
+          "$tex": "\non event {super.*} then {\n    anytime {{ console.log(\"Evento: super.*\" ); }}\n}",
+          "orden": 10
+        }
+      ]
+    }
+  },
+  "readme.fwl": {
+    "order": 1,
+    "data": {
+      "ast": [
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": "*",
+          "bloque": " console.log(\"que pasa por aquí, imprimirá esto\") ;\n console.log(\"que pasa por aquí, imprimirá esto\") ;\nx: { console.log(\"Empieza proceso x\") ;\n break x; };\ny: { console.log(\"Starts process y\") ;\n break y; };\nif( condicion(1)  &&  condicion(2)  || ( condicion(3)  &&  condicion(4) )) {\n        console.log(\"OK 1\")\n    }\n  else if(( condicion(5)  ||  condicion(6) ) && ( condicion(7)  ||  condicion(8) )) {\n        console.log(\"OK 2\")\n    }\n  else {\n        console.log(\"NO OK\");\n    };\nif( condicion(1)  ||  condicion(2)  || ( condicion(3)  ||  condicion(4) )) {\n        console.log(\"OK 1\")\n    }\n  else if(( condicion(5)  ||  condicion(6) ) && ( condicion(7)  ||  condicion(8) )) {\n        console.log(\"OK 2\")\n    }\n  else {\n        console.log(\"NO OK\");\n    };\nif( condicion(1) ) {one: {if( condicion(2)  ||  condicion(3)  ||  condicion(4) ) { break one; }\n  else if( condicion(5)  ||  condicion(6) ) { break one; }\n  else { throw new Error(\"No se puede\"); }}}",
+          "$loc": {
+            "start": {
+              "offset": 0,
+              "line": 1,
+              "column": 1
+            },
+            "end": {
+              "offset": 1523,
+              "line": 51,
+              "column": 2
+            }
+          },
+          "$tex": "en evento {*} ocurre que {\n    siempre {{ console.log(\"que pasa por aquí, imprimirá esto\") }}\n\n    anytime {{ console.log(\"que pasa por aquí, imprimirá esto\") }}\n\n    en proceso x: {\n        siempre {{ console.log(\"Empieza proceso x\") }}\n        siempre {{ break x; }}\n    }\n\n    in process y: {\n        siempre {{ console.log(\"Starts process y\") }}\n        siempre {{ break y; }}\n    }\n\n    si {{ condicion(1) }} y {{ condicion(2) }} o (\n        {{ condicion(3) }} y {{ condicion(4) }}\n    ) entonces {{\n        console.log(\"OK 1\")\n    }} o si ({{ condicion(5) }} o {{ condicion(6) }}) y (\n        {{ condicion(7) }} o {{ condicion(8) }}\n    ) entonces {{\n        console.log(\"OK 2\")\n    }} o si no entonces {{\n        console.log(\"NO OK\");\n    }}\n\n    if {{ condicion(1) }} and {{ condicion(2) }} or (\n        {{ condicion(3) }} and {{ condicion(4) }}\n    ) then {{\n        console.log(\"OK 1\")\n    }} o si ({{ condicion(5) }} o {{ condicion(6) }}) y (\n        {{ condicion(7) }} o {{ condicion(8) }}\n    ) entonces {{\n        console.log(\"OK 2\")\n    }} o si no entonces {{\n        console.log(\"NO OK\");\n    }}\n\n    if {{ condicion(1) }} then {\n        in process one: {\n            if {{ condicion(2) }} or {{ condicion(3) }} or {{ condicion(4) }} then {\n                anytime {{ break one; }}\n            } else if {{ condicion(5) }} or {{ condicion(6) }} then {\n                anytime {{ break one; }}\n            } else {\n                anytime {{ throw new Error(\"No se puede\"); }}\n            }\n        }\n    }\n}",
+          "orden": 0
+        }
+      ]
+    }
+  }
+}
