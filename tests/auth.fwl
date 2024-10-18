@@ -1,0 +1,3 @@
+on events {*} then {
+    anytime {{ console.log("Siiiiii desde el auth tambien") }}
+}

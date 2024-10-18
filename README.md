@@ -286,6 +286,7 @@ Este es el estado por defecto de las configuraciones:
     separador_de_eventos: ",",
     separador_de_ambito: ".",
     globales: {},
+    precargas: [],
 }
 ```
 
@@ -364,6 +365,140 @@ on event {*} then {
     else {{ no_hacer_nada() }}
 }
 ```
+
+### La propiedad `this.configuraciones.precargas`
+
+Esta propiedad permite especificar una lista de rutas de ficheros que quieres que se usen cuando hagas:
+
+```js
+await firewall.precargar_estado();
+```
+
+Que es una llamada implicada en la función:
+
+```js
+await firewall.cargar_fichero(ruta);
+```
+
+Aunque no será llamada si usas el segundo parámetro así:
+
+```js
+await firewall.cargar_fichero(ruta, { precargar: false }); // Por defecto está en true en «cargar_fichero»
+```
+
+Esta propiedad no está implicada en la llamada:
+
+```js
+firewall.cargar_script(texto);
+```
+
+Esto se debe a que al `precargar_estado` se rompería la sincronía del método `cargar_script`, y no es deseable. Si quieres usar la precarga en combinación con `cargar_script`, puedes usarlo por tu cuenta combinándolo con el método `precargar_estado` que, a diferencia de `cargar_script`, es asíncrono.
+
+Ten en cuenta que los eventos de la precarga se incrustarán en `firewall.eventos` pero el `firewall.estado` no mostrará el AST (Abstract Syntax Tree) de ninguno de esos ficheros, sino del último fichero que es el que usas cuando llamas a `firewall.cargar_fichero(este_fichero_digo)`.
+
+
+### La API más en profundidad
+
+Principalmente, la API se usa así:
+
+```js
+const firewall = require("sistema-lenguaje-firewall").crear({ precargas: ["auth.fwl"] });
+await firewall.cargar_fichero("custom.fwl");
+await firewall.emitir("evento", "parametros");
+```
+
+Aquí, en 3 líneas, estarías preparando lógica fija (precargas), lógica variable (custom.fwl) y emitiendo un evento ya.
+
+Pero hay más usos que pueden interesarte, sin meterse dentro de la API de "bajo nivel" de la librería, que son más como utilidades que usa la de "alto nivel".
+
+Y esto es lo que querría explicar en esta sección.
+
+#### Crear una regla en vivo con la API
+
+Puedes crear nuevas reglas para el firewall sin dejar de usarlo así:
+
+```js
+await firewall.insertar_regla(codigo); // usará la ruta del último fichero cargado
+await firewall.insertar_regla(codigo, fichero); // usará la ruta proporcionada en fichero
+```
+
+Esto hará que:
+  1. Lea el fichero
+  2. Interprete el fichero
+  3. Cambie el código
+    - Para añadir la regla en este caso
+  4. Sobreescriba el fichero
+  5. Resetee el estado y los eventos del firewall
+  6. Precargue los ficheros (recuerda: de `firewall.configuraciones.precargas`)
+  7. Cargue nuevamente el fichero
+
+Y así actualice su estado en función de los cambios aplicados.
+
+#### Cambiar una regla en vivo con la API
+
+Puedes cambiar reglas del firewall sin dejar de usarlo así:
+
+```js
+await firewall.cambiar_regla(id_de_regla, codigo); // usará la ruta del último fichero cargado
+await firewall.cambiar_regla(id_de_regla, codigo, fichero); // usará la ruta proporcionada en fichero
+```
+
+Esto hará que:
+  1. Lea el fichero
+  2. Interprete el fichero
+  3. Cambie el código
+    - Para cambiar la regla en este caso
+  4. Sobreescriba el fichero
+  5. Resetee el estado y los eventos del firewall
+  6. Precargue los ficheros (recuerda: de `firewall.configuraciones.precargas`)
+  7. Cargue nuevamente el fichero
+
+Y así actualice su estado en función de los cambios aplicados.
+
+#### Eliminar una regla en vivo con la API
+
+Puedes eliminar reglas para el firewall sin dejar de usarlo así:
+
+```js
+await firewall.eliminar_regla(codigo); // usará la ruta del último fichero cargado
+await firewall.eliminar_regla(codigo, fichero); // usará la ruta proporcionada en fichero
+```
+
+Esto hará que:
+  1. Lea el fichero
+  2. Interprete el fichero
+  3. Cambie el código
+    - Para eliminar la regla en este caso
+  4. Sobreescriba el fichero
+  5. Resetee el estado y los eventos del firewall
+  6. Precargue los ficheros (recuerda: de `firewall.configuraciones.precargas`)
+  7. Cargue nuevamente el fichero
+
+Y así actualice su estado en función de los cambios aplicados.
+
+#### Recargar el firewall
+
+Para recargar todo: las precargas y el fichero interactuable (mediante estos métodos, que acabo de explicar, de: `insertar_regla`, `cambiar_regla`, `eliminar_regla`), hay un método al uso, usa asincronía porque tiene que leer ficheros, en teoría:
+
+```js
+await firewall.recargar();
+```
+
+Tienes que haber hecho antes esto para que funcione:
+
+```js
+await firewall.cargar_fichero("firewall.fwl");
+```
+
+#### Vincular un fichero al firewall
+
+Para sincronizar el estado de un fichero automáticamente con el firewall, lo cual no siempre es la mejor opción (es menos costoso `firewall.recargar()` y ya), puedes usar este método, que por debajo usa la librería `chokidar`:
+
+```js
+firewall.escuchar_fichero(fichero);
+```
+
+De esta forma, si cambias el fichero, y el código está bien formado, se cambia el estado del firewall automáticamente.
 
 ## Conclusiones
 

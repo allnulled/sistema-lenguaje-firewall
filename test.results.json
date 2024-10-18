@@ -1,6 +1,60 @@
 {
-  "firewall1.fwl": {
+  "auth.fwl": {
     "order": 0,
+    "data": {
+      "ast": [
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": "*",
+          "bloque": " console.log(\"Siiiiii desde el auth tambien\") ",
+          "$loc": {
+            "start": {
+              "offset": 0,
+              "line": 1,
+              "column": 1
+            },
+            "end": {
+              "offset": 85,
+              "line": 3,
+              "column": 2
+            }
+          },
+          "$tex": "on events {*} then {\n    anytime {{ console.log(\"Siiiiii desde el auth tambien\") }}\n}",
+          "orden": 0
+        }
+      ]
+    }
+  },
+  "cambios.fwl": {
+    "order": 1,
+    "data": {
+      "ast": [
+        {
+          "tipo": "sentencia de regla",
+          "id": "rule 2",
+          "eventos": "*",
+          "bloque": " console.log('Esto es que se pasaron los tests de la API de cambios de reglas!'); ",
+          "$loc": {
+            "start": {
+              "offset": 0,
+              "line": 1,
+              "column": 1
+            },
+            "end": {
+              "offset": 114,
+              "line": 1,
+              "column": 115
+            }
+          },
+          "$tex": "[rule 2] on events {*} then {{ console.log('Esto es que se pasaron los tests de la API de cambios de reglas!'); }}",
+          "orden": 0
+        }
+      ]
+    }
+  },
+  "firewall1.fwl": {
+    "order": 2,
     "data": {
       "ast": [
         {
@@ -247,7 +301,7 @@
     }
   },
   "readme.fwl": {
-    "order": 1,
+    "order": 3,
     "data": {
       "ast": [
         {

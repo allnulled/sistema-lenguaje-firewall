@@ -1,0 +1,3 @@
+[rule 2] on events {*} then {{
+  console.log('Esto es que se pasaron los tests de la API de cambios de reglas!');
+}}
