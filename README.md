@@ -364,3 +364,27 @@ on event {*} then {
     else {{ no_hacer_nada() }}
 }
 ```
+
+## Conclusiones
+
+Esta librería y lenguaje surge por la demanda de **aliviar tensión** en un punto crítico de muchas aplicaciones.
+
+La lógica de negocio, cuando las cosas se empiezan a complicar, se vuelve un punto oscuro, donde pasan muchas cosas, pero no sabes, todo está junto, con código. 
+
+Esta librería INVITA y FACILITA buenas prácticas a la hora de desarrollar esta lógica de negocio:
+  
+  - **Mayor desacoplamiento de código**. Al interesar tener las funciones separadas y accesibles, el lenguaje invita a que separes y definas claramente el código que quieres implicar en esta centralización de la lógica (de seguridad sobre todo, por cierto, enfocado a eso sobre todo, por eso lo he llamado *firewall* aunque puede usarse para muchas cosas más). El juego de las globales, por ejemplo, ya invita a que separes el código que quieres implicar en esta lógica.
+  - **Mayor desacoplamiento entre causas (condiciones) y consecuencias (instrucciones)**. Al solo disponer de sentencias escasas, el lenguaje ya invita a que utilices condicionales y procesos interrumpibles para guiar al flujo de ejecución por donde interesa en la aplicación. Esto invita a su vez a romper la lógica de negocio en 2 categorías: condiciones (*ifs*) e instrucciones (*thens*).
+  - **Mayor granularidad**. Este desacoplamiento trae consigo la ventaja de granular más el código, y así reaprovechar el código de condiciones e instrucciones para otras ocasiones.
+  - **Mayor claridad del código**. Cuando entras en un script así, ya sabes qué tipo de lógica vas a encontrar. Y eso permite que puedas usar un lenguaje que aporta mayor claridad al expresar las intenciones que tienes para con el programa. Por eso surge el lenguaje, esta es la principal razón por la que lo construí.
+  - **Menor ofuscación del código**. Si te fijas, es una sintaxis muy seca. Podría permitir muchísimas más cosas, podría ampliarse a lenguaje de propósito general. Pero esto permitiría que la ofuscación del código proliferase. De esta forma, nos centramos en lo que interesa, y apartamos lo que no.
+  - **Mayor organización**. Con esto va a estar tirado localizar la lógica de la seguridad, buscar en ella, y encontrar rápidamente los fallos de seguridad.
+  - **Seguridad más asequible**. No es lo mismo tener un sistema de condicionales esparcido por todo el proyecto, que tener la lógica sensible centralizada en 1 solo sitio. Esto permite conseguir seguridad más fácilmente, así como llegar más lejos, sin tanta complejidad que luego además te quitará tiempo.
+
+El proyecto es muy parecido a otros que he hecho, del tipo *gestor de hooks*. La diferencia de este es que ya lo he orientado a clarificar condicionales intrincados que puedan complicar la lógica de seguridad sobre todo, donde tienes que tener en cuenta permisos y cosas así.
+
+Me gusta enfocarlo como una máquina que va a facilitar que puedas utilizar sistemas de autorización, permisos y seguridad así, de una forma ya más o menos guiada, pero sin quitarle potencial práctico tampoco. Tú preparas esa máquina (con funciones, las globales), cargas el estado (con texto) o vinculas el estado (a un fichero), y de ahí utilizas la máquina para dispersar la lógica de seguridad por tu programa. De esta forma, te puedes olvidar bastante del tema, porque por un lado solo tienes que inyectar emisiones de eventos, y por el otro lado aclarar las reglas lógicas en 1 script.
+
+Insisto, tener todas las condiciones de la lógica de seguridad centralizadas, con una sintaxis específica que permite clarificar y legibilizar todo. Y creo que se ha conseguido, JavaScript puede leerse bien, pero es mucho mejor tenerlo separado, con una lógica aparte, en un lenguaje aparte. Esto, calculo, hará que puedas escalar más fácilmente programas que necesitan incorporar seguridad.
+
+Y ya está, es todo.
