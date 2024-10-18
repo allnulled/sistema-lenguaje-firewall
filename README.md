@@ -300,12 +300,12 @@ Se usa en la sentencia de registrar eventos así:
 
 ```
 on events {
-    rest,
-    rest.*,
-    rest.actualizar,
-    rest.actualizar.*,
+    rest.insertar.muchos,
+    rest.insertar.muchos.*,
     rest.actualizar.muchos,
     rest.actualizar.muchos.*,
+    rest.eliminar.muchos,
+    rest.eliminar.muchos.*,
 } then {
 
 }
