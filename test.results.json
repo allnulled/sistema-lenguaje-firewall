@@ -87,7 +87,7 @@
           "tipo": "sentencia de regla",
           "id": null,
           "eventos": " * ",
-          "bloque": "\n    // console.clear();\n    console.log(\"Evento: *\" );\n    console.log(\"[TRACE] A las \" + (new Date()).toString() + \"\\n[TRACE] Evento emitido: \" + evento);\n    console.log(\"[TRACE]\", parametros);\n",
+          "bloque": "\n    // console.clear();\n    log(\"Evento: *\" );\n    log(\"[TRACE] A las \" + (new Date()).toString() + \"\\n[TRACE] Evento emitido: \" + evento);\n    log(\"[TRACE]\", parametros);\n",
           "$loc": {
             "start": {
               "offset": 623,
@@ -95,12 +95,12 @@
               "column": 47
             },
             "end": {
-              "offset": 846,
+              "offset": 822,
               "line": 35,
               "column": 3
             }
           },
-          "$tex": "\n\non event { * } then {{\n    // console.clear();\n    console.log(\"Evento: *\" );\n    console.log(\"[TRACE] A las \" + (new Date()).toString() + \"\\n[TRACE] Evento emitido: \" + evento);\n    console.log(\"[TRACE]\", parametros);\n}}",
+          "$tex": "\n\non event { * } then {{\n    // console.clear();\n    log(\"Evento: *\" );\n    log(\"[TRACE] A las \" + (new Date()).toString() + \"\\n[TRACE] Evento emitido: \" + evento);\n    log(\"[TRACE]\", parametros);\n}}",
           "orden": 4
         },
         {
@@ -110,12 +110,12 @@
           "bloque": " // cargar_todo() ;\nif(! true  ||  false  && (( false  ||  false ) || ( false  ||  true ))) { \n        // await go();\n    };\nif( false  ||  false  && ( false  ||  false )) { \n        // await go();\n    }",
           "$loc": {
             "start": {
-              "offset": 846,
+              "offset": 822,
               "line": 35,
               "column": 3
             },
             "end": {
-              "offset": 1205,
+              "offset": 1181,
               "line": 52,
               "column": 2
             }
@@ -127,101 +127,121 @@
           "tipo": "sentencia de regla",
           "id": null,
           "eventos": "super.hiper.mega.guay",
-          "bloque": " console.log(\"Evento: super.hiper.mega.guay\" ); ",
+          "bloque": " log(\"Evento: super.hiper.mega.guay\" ); ",
           "$loc": {
             "start": {
-              "offset": 1205,
+              "offset": 1181,
               "line": 52,
               "column": 2
             },
             "end": {
-              "offset": 1313,
+              "offset": 1281,
               "line": 56,
               "column": 2
             }
           },
-          "$tex": "\n\non event {super.hiper.mega.guay} then {\n    anytime {{ console.log(\"Evento: super.hiper.mega.guay\" ); }}\n}",
+          "$tex": "\n\non event {super.hiper.mega.guay} then {\n    anytime {{ log(\"Evento: super.hiper.mega.guay\" ); }}\n}",
           "orden": 6
         },
         {
           "tipo": "sentencia de regla",
           "id": null,
           "eventos": "super.hiper.mega.guay.*",
-          "bloque": " console.log(\"Evento: super.hiper.mega.guay.*\" ); ",
+          "bloque": " log(\"Evento: super.hiper.mega.guay.*\" ); ",
           "$loc": {
             "start": {
-              "offset": 1313,
+              "offset": 1281,
               "line": 56,
               "column": 2
             },
             "end": {
-              "offset": 1424,
+              "offset": 1384,
               "line": 59,
               "column": 2
             }
           },
-          "$tex": "\non event {super.hiper.mega.guay.*} then {\n    anytime {{ console.log(\"Evento: super.hiper.mega.guay.*\" ); }}\n}",
+          "$tex": "\non event {super.hiper.mega.guay.*} then {\n    anytime {{ log(\"Evento: super.hiper.mega.guay.*\" ); }}\n}",
           "orden": 7
         },
         {
           "tipo": "sentencia de regla",
           "id": null,
           "eventos": "super.hiper.mega.*",
-          "bloque": " console.log(\"Evento: super.hiper.mega.*\" ); ",
+          "bloque": " log(\"Evento: super.hiper.mega.*\" ); ",
           "$loc": {
             "start": {
-              "offset": 1424,
+              "offset": 1384,
               "line": 59,
               "column": 2
             },
             "end": {
-              "offset": 1525,
+              "offset": 1477,
               "line": 62,
               "column": 2
             }
           },
-          "$tex": "\non event {super.hiper.mega.*} then {\n    anytime {{ console.log(\"Evento: super.hiper.mega.*\" ); }}\n}",
+          "$tex": "\non event {super.hiper.mega.*} then {\n    anytime {{ log(\"Evento: super.hiper.mega.*\" ); }}\n}",
           "orden": 8
         },
         {
           "tipo": "sentencia de regla",
           "id": null,
           "eventos": "super.hiper.*",
-          "bloque": " console.log(\"Evento: super.hiper.*\" ); ",
+          "bloque": " log(\"Evento: super.hiper.*\" ); ",
           "$loc": {
             "start": {
-              "offset": 1525,
+              "offset": 1477,
               "line": 62,
               "column": 2
             },
             "end": {
-              "offset": 1616,
+              "offset": 1560,
               "line": 65,
               "column": 2
             }
           },
-          "$tex": "\non event {super.hiper.*} then {\n    anytime {{ console.log(\"Evento: super.hiper.*\" ); }}\n}",
+          "$tex": "\non event {super.hiper.*} then {\n    anytime {{ log(\"Evento: super.hiper.*\" ); }}\n}",
           "orden": 9
         },
         {
           "tipo": "sentencia de regla",
           "id": null,
           "eventos": "super.*",
-          "bloque": " console.log(\"Evento: super.*\" ); ",
+          "bloque": " log(\"Evento: super.*\" ); ",
           "$loc": {
             "start": {
-              "offset": 1616,
+              "offset": 1560,
               "line": 65,
               "column": 2
             },
             "end": {
-              "offset": 1695,
+              "offset": 1631,
               "line": 68,
               "column": 2
             }
           },
-          "$tex": "\non event {super.*} then {\n    anytime {{ console.log(\"Evento: super.*\" ); }}\n}",
+          "$tex": "\non event {super.*} then {\n    anytime {{ log(\"Evento: super.*\" ); }}\n}",
           "orden": 10
+        },
+        {
+          "tipo": "sentencia de regla",
+          "id": null,
+          "eventos": "*",
+          "bloque": " log(\"ESTOY USANDO MIS PROPIAS FUNCIONEEEEEEEEEEEEEEES\" ); ",
+          "$loc": {
+            "start": {
+              "offset": 1631,
+              "line": 68,
+              "column": 2
+            },
+            "end": {
+              "offset": 1729,
+              "line": 71,
+              "column": 2
+            }
+          },
+          "$tex": "\non event {*} then {\n    anytime {{ log(\"ESTOY USANDO MIS PROPIAS FUNCIONEEEEEEEEEEEEEEES\" ); }}\n}",
+          "orden": 11
         }
       ]
     }

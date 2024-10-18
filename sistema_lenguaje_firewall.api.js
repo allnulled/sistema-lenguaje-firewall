@@ -12,8 +12,13 @@ const Sistema_lenguaje_firewall = class {
       tracear: true,
       ambito: this,
       separador_de_eventos: ",",
-      separador_de_ambito: "."
+      separador_de_ambito: ".",
+      globales: {},
     }, configuraciones);
+  }
+  establecer_globales(globales = {}) {
+    this.configuraciones.globales = globales;
+    return this;
   }
   tracear(mensaje) {
     if(this.configuraciones.tracear) {
@@ -35,20 +40,37 @@ const Sistema_lenguaje_firewall = class {
       const eventos = sentencia.eventos.split(this.configuraciones.separador_de_eventos);
       for(let index_evento=0; index_evento<eventos.length; index_evento++) {
         const evento = eventos[index_evento];
-        this.registrar(evento, this.crear_funcion_asincrona_por_codigo(sentencia.bloque, ["evento", "parametros", "firewall"]))
+        this.registrar(evento, this.crear_funcion_asincrona_por_codigo(sentencia.bloque, ["evento", "parametros", "firewall"], this.configuraciones.globales))
       }
     }
     return this.estado;
   }
-  crear_funcion_asincrona_por_codigo(codigo_js, nombres_de_parametros = []) {
+  crear_funcion_asincrona_por_codigo(codigo_js, nombres_de_parametros = [], globales = {}) {
     this.tracear("Firewall.prototype.crear_funcion_asincrona_por_codigo");
-    let precodigo_js = "";
+    let precodigo_js_parametros = "";
+    Iteramos_nombres_de_parametros:
     for(let index=0; index<nombres_de_parametros.length; index++) {
       const nombre = nombres_de_parametros[index];
-      precodigo_js += "const " + nombre + " = arguments[" + index + "];\n";
+      precodigo_js_parametros += "const " + nombre + " = arguments[" + index + "];\n";
     }
-    const codigo_funcion = precodigo_js + codigo_js;
-    return Object.getPrototypeOf(async function() {}).constructor(codigo_funcion);
+    const nombres_globales = Object.keys(globales);
+    let precodigo_js_globales = "";
+    Iteramos_propiedades_globales:
+    if(nombres_globales.length) {
+      precodigo_js_globales += "const {\n  ";
+      for(let index=0; index<nombres_globales.length; index++) {
+        const nombre_global = nombres_globales[index];
+        if(index !== 0) {
+          precodigo_js_globales += ",\n  ";
+        }
+        precodigo_js_globales += nombre_global;
+      }
+      precodigo_js_globales += "\n} = firewall.configuraciones.globales;\n";
+    }
+    const codigo_funcion = precodigo_js_parametros + precodigo_js_globales + codigo_js;
+    this.tracear("Compilando JavaScript: " + codigo_funcion);
+    const dato_funcion = Object.getPrototypeOf(async function() {}).constructor(codigo_funcion);
+    return dato_funcion;
   }
   leer_fichero(ruta) {
     this.tracear("Firewall.prototype.leer_fichero");

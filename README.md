@@ -139,7 +139,13 @@ No son muchas ventajas, pero alguna de ellas puede aumentar la mantenibilidad de
 
 ## Detalles del lenguaje
 
+El lenguaje acepta sentencias, como todos los lenguajes.
+
+### Sentencias globales
+
 El lenguaje capta 1 tipo de sentencia: el registro de eventos. Puede repetirse cuantas veces sean.
+
+### Sentencias de «registro de eventos»
 
 Este, por ejemplo, es el evento genérico. Si usamos el `*`, estaremos inyectando código en todos los eventos de la máquina.
 
@@ -177,6 +183,8 @@ Pues dentro de esta sentencia, podemos encontrar 3 tipos de sentencia:
   - Proceso. Los bloques de procesos pueden interrumpirse con un {{ break nombre_de_proceso; }} de JavaScript. Permiten continuar la sintaxis solamente.
   - Condicional. Los bloques condicionales pueden definir unas condiciones y decidir qué viene después, si más sentencias tipo así, o un bloque de JavaScript a pelo.
 
+### Sentencia de «siempre»
+
 Un ejemplo de sentencia de siempre es muy sencillo.
 
 ```
@@ -184,6 +192,8 @@ siempre {{ console.log("que pasa por aquí, imprimirá esto") }}
 
 anytime {{ console.log("que pasa por aquí, imprimirá esto") }}
 ```
+
+### Sentencia de «en proceso»
 
 Un ejemplo de sentencia de proceso es muy sencillo.
 
@@ -198,6 +208,8 @@ in process y: {
     siempre {{ break y; }}
 }
 ```
+
+### Sentencia de «condicional»
 
 Un ejemplo de sentencia de condicional podría ser este:
 
@@ -240,5 +252,115 @@ if {{ condicion(1) }} then {
             anytime {{ throw new Error("No se puede"); }}
         }
     }
+}
+```
+
+## La API
+
+En esta sección se detalla información sobre la API.
+
+### El constructor `Firewall.crear(configuraciones)`
+
+Cuando importamos la API, nos devuelve una clase: `Firewall`.
+
+```js
+const Firewall = require("sistema-lenguaje-firewall");
+```
+
+Para crear instancias con esa clase, podemos usar el método estático `Firewall.crear(configuraciones)`.
+
+```js
+Firewall.crear({
+    // Aquí van las configuraciones.
+})
+```
+
+El parámetro `configuraciones` que se le pasa, este objeto, puede sobreescribir el estado por defecto de las configuraciones.
+
+Este es el estado por defecto de las configuraciones:
+
+```js
+{
+    tracear: true,
+    ambito: this,
+    separador_de_eventos: ",",
+    separador_de_ambito: ".",
+    globales: {},
+}
+```
+
+
+
+
+### La propiedad `this.configuraciones.separador_de_ambito`
+
+El separador de ámbito es un texto que se usa para separar los ámbitos de un identificador de eventos. Así, decimos que el evento `rest.actualizar.muchos` tiene 3 ámbitos: `rest`, `actualizar`, y `muchos`. Esto permite el juego del `*` (asterisco) para seleccionar eventos, como hemos explicado antes.
+
+Se usa en la sentencia de registrar eventos así:
+
+```
+on events {
+    rest,
+    rest.*,
+    rest.actualizar,
+    rest.actualizar.*,
+    rest.actualizar.muchos,
+    rest.actualizar.muchos.*,
+} then {
+
+}
+```
+
+Por defecto es `.` (un punto).
+
+### La propiedad `this.configuraciones.separador_de_evento`
+
+El separador de eventos es un texto que se usa para separar los eventos de un identificador de eventos. Así, por ejemplo, podemos referirnos a diferentes eventos en una misma regla. El ejemplo anterior de `this.configuraciones.separador_de_ambito` es suficientemente ilustrativo.
+
+Por defecto es `,` (una coma).
+
+### La propiedad `this.configuraciones.tracear`
+
+Esta propiedad es un booleano que indica si se tienen que imprimir los traceos o no.
+
+Por defecto es `true`.
+
+### La propiedad `this.configuraciones.ambito`
+
+Esta propiedad es usada para hacer `funcion_de_evento.bind(this.configuraciones.ambito)` con todos los eventos que registremos en el firewall.
+
+Por defecto es `this` (la instancia de `firewall` misma).
+
+Por tanto, todos los eventos encontrarán en el `this` a la instancia de `firewall` por defecto.
+
+### La propiedad `this.configuraciones.globales`
+
+Otra cosa a tener en cuenta es que si al crear el Firewall le pasas algo así en la propiedad de `globales`:
+
+```js
+const firewall = Firewall.crear({
+    globales: {
+        nombre_de_funcion() {
+            // Código de función
+        },
+        comprobar_una_cosa() {},
+        comprobar_otra_cosa() {},
+        comprobar_otra_cosa_mas() {},
+        ejecutar_una_cosa() {},
+        ejecutar_otra_cosa() {},
+        ejecutar_otra_cosa_mas() {},
+        no_hacer_nada() {}
+    }
+});
+```
+
+...entonces consigues tener `nombre_de_funcion` y las otras como variables del ámbito en el que se ejecuta el evento. No polucionan el espacio global de nombres, pero sí son extraídas del objeto `this.configuraciones.globales` y desacopladas de él en código. Esto significa que en este objeto `globales` no deben ir nombres de propiedades que no puedan ser usadas como nombre de variable en JavaScript. Y si lo haces bien, luego puedes hacer cosas así:
+
+```
+on event {*} then {
+    if {{ comprobar_una_cosa() }} then {{ ejecutar_una_cosa() }}
+    else if {{ comprobar_otra_cosa() }} then {{ ejecutar_otra_cosa() }}
+    else if {{ comprobar_otra_cosa_mas() }} then {{ ejecutar_otra_cosa_mas() }}
+    else {{ no_hacer_nada() }}
 }
 ```

@@ -30,7 +30,15 @@ const main = async function () {
   }
   Testear_api_de_firewall: {
     const Sistema_lenguaje_firewall = require(__dirname + "/sistema_lenguaje_firewall.api.js");
-    const firewall = Sistema_lenguaje_firewall.crear();
+    const firewall = Sistema_lenguaje_firewall.crear({
+      globales: {
+        log: console.log,
+        trace: (msg, ...args) => console.log("[TRACE] " + msg, ...args),
+        prohibir: (msg, name) => { throw new Error(msg); },
+        permitir: (msg) => {},
+        continuar: () => {},
+      }
+    });
     firewall.registrar("saludar", function(mensaje) {
       console.log("Evento 1");
       console.log(mensaje);

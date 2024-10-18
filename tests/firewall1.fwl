@@ -29,9 +29,9 @@ on event { * } then {{ // load_everything() }}
 
 on event { * } then {{
     // console.clear();
-    console.log("Evento: *" );
-    console.log("[TRACE] A las " + (new Date()).toString() + "\n[TRACE] Evento emitido: " + evento);
-    console.log("[TRACE]", parametros);
+    log("Evento: *" );
+    log("[TRACE] A las " + (new Date()).toString() + "\n[TRACE] Evento emitido: " + evento);
+    log("[TRACE]", parametros);
 }}
 
 
@@ -52,17 +52,20 @@ en evento { * } entonces {
 }
 
 on event {super.hiper.mega.guay} then {
-    anytime {{ console.log("Evento: super.hiper.mega.guay" ); }}
+    anytime {{ log("Evento: super.hiper.mega.guay" ); }}
 }
 on event {super.hiper.mega.guay.*} then {
-    anytime {{ console.log("Evento: super.hiper.mega.guay.*" ); }}
+    anytime {{ log("Evento: super.hiper.mega.guay.*" ); }}
 }
 on event {super.hiper.mega.*} then {
-    anytime {{ console.log("Evento: super.hiper.mega.*" ); }}
+    anytime {{ log("Evento: super.hiper.mega.*" ); }}
 }
 on event {super.hiper.*} then {
-    anytime {{ console.log("Evento: super.hiper.*" ); }}
+    anytime {{ log("Evento: super.hiper.*" ); }}
 }
 on event {super.*} then {
-    anytime {{ console.log("Evento: super.*" ); }}
+    anytime {{ log("Evento: super.*" ); }}
+}
+on event {*} then {
+    anytime {{ log("ESTOY USANDO MIS PROPIAS FUNCIONEEEEEEEEEEEEEEES" ); }}
 }
