@@ -1,7 +1,7 @@
 {
   "name": "sistema-lenguaje-firewall",
-  "version": "1.0.4",
-  "main": "sistema-lenguaje-firewall.api.js",
+  "version": "1.0.5",
+  "main": "sistema_lenguaje_firewall.api.js",
   "directories": {
     "test": "tests"
   },

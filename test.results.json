@@ -34,7 +34,7 @@
           "tipo": "sentencia de regla",
           "id": "rule 2",
           "eventos": "*",
-          "bloque": " console.log('Esto es que se pasaron los tests de la API de cambios de reglas!'); ",
+          "bloque": "\n  console.log('Esto es que se pasaron los tests de la API de cambios de reglas!');\n",
           "$loc": {
             "start": {
               "offset": 0,
@@ -42,12 +42,12 @@
               "column": 1
             },
             "end": {
-              "offset": 114,
-              "line": 1,
-              "column": 115
+              "offset": 116,
+              "line": 3,
+              "column": 3
             }
           },
-          "$tex": "[rule 2] on events {*} then {{ console.log('Esto es que se pasaron los tests de la API de cambios de reglas!'); }}",
+          "$tex": "[rule 2] on events {*} then {{\n  console.log('Esto es que se pasaron los tests de la API de cambios de reglas!');\n}}",
           "orden": 0
         }
       ]
