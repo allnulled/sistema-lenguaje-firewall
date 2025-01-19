@@ -1,6 +1,6 @@
 {
   "name": "sistema-lenguaje-firewall",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "sistema_lenguaje_firewall.api.js",
   "directories": {
     "test": "tests"
@@ -14,7 +14,7 @@
     "event"
   ],
   "author": "allnulled",
-  "license": "ISC",
+  "license": "WTFPL",
   "dependencies": {
     "chokidar": "^4.0.1"
   },
